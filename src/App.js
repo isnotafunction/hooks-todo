@@ -4,16 +4,28 @@ import TodoForm from './TodoForm'
 import './App.css'
 
 function App() {
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState([
+    { text: 'cat', index: 0, completed: false }
+  ])
 
   const addTodo = (value, index) => {
-    const newTodoArray = [...todos, { text: value, index }]
+    const newTodoArray = [...todos, { text: value, index, completed: false }]
     setTodos(newTodoArray)
   }
 
-  const deleteTodo = index => {
+  const deleteTodo = (e, index) => {
+    e.stopPropagation()
     let todosClone = [...todos]
     todosClone.splice(index, 1)
+    setTodos(todosClone)
+  }
+
+  const toggleCompleted = item =>
+    item.completed ? (item.completed = false) : (item.completed = true)
+
+  const completeTodo = index => {
+    let todosClone = [...todos]
+    toggleCompleted(todosClone[index])
     setTodos(todosClone)
   }
 
@@ -25,7 +37,9 @@ function App() {
           key={todo + index}
           index={index}
           todo={todo.text}
+          completed={todo.completed}
           deleteTodo={deleteTodo}
+          completeTodo={completeTodo}
         />
       ))}
     </>
