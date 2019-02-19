@@ -4,22 +4,29 @@ import TodoForm from './TodoForm'
 import './App.css'
 
 function App() {
-  const [todos, setTodos] = useState([
-    { text: 'do that' },
-    { text: 'feed the cat' },
-    { text: 'pet the bat' }
-  ])
+  const [todos, setTodos] = useState([])
 
-  const addTodo = value => {
-    const newTodoArray = [...todos, { text: value }]
+  const addTodo = (value, index) => {
+    const newTodoArray = [...todos, { text: value, index }]
     setTodos(newTodoArray)
+  }
+
+  const deleteTodo = index => {
+    let todosClone = [...todos]
+    todosClone.splice(index, 1)
+    setTodos(todosClone)
   }
 
   return (
     <>
       <TodoForm addTodo={addTodo} />
       {todos.map((todo, index) => (
-        <Todo key={todo + index} index={index} todo={todo.text} />
+        <Todo
+          key={todo + index}
+          index={index}
+          todo={todo.text}
+          deleteTodo={deleteTodo}
+        />
       ))}
     </>
   )
