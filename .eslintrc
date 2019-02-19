@@ -1,0 +1,11 @@
+{
+  "extends": ["recommended", "plugin:react/recommended"],
+  "env": { "es6": true, "browser": true, "node": true },
+  "plugins": ["react-hooks"],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error"
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  }
+}
