@@ -4,9 +4,7 @@ import TodoForm from './TodoForm'
 import './App.css'
 
 function App() {
-  const [todos, setTodos] = useState([
-    { text: 'cat', index: 0, completed: false }
-  ])
+  const [todos, setTodos] = useState([])
 
   const addTodo = (value, index) => {
     const newTodoArray = [...todos, { text: value, index, completed: false }]
